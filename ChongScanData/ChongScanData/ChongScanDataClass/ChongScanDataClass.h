@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ChongScanDataClass : UIViewController
-
+@property (nonatomic, copy)void(^getCodingBlock)(NSString *code);
 @end
