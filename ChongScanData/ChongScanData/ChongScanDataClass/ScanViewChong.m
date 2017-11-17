@@ -34,12 +34,12 @@
             return;
         }
         /*!
-         *  @abstract
+         *  @abstract 输入输出流
          */
-//        asdfasdf
-
         AVCaptureDevice *device  = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
         AVCaptureInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
+
+
 
     }
 }
