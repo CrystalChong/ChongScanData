@@ -11,14 +11,15 @@
 @protocol ScanViewDelegate<NSObject>
 - (void)getScanDataString:(NSString *)scanDataString;
 @end
-
-
 @interface ScanViewChong : UIView
 typedef  NS_ENUM(NSInteger, ScanType){
+    typeALL,
     typeQR,
     typeRecent
 };
 @property (nonatomic, assign)id<ScanViewDelegate> delegate;
 @property (nonatomic, assign)ScanType scantype;
+@property (nonatomic, copy)void (^disMissBlock)(BOOL isDissMiss);
 @property (nonatomic, copy)void (^notUsePhotoBlock)(BOOL ifUse);
+
 @end
