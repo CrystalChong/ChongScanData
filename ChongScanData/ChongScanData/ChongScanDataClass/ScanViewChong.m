@@ -36,11 +36,7 @@
         /*!
          *  @abstract
          */
-//        asdfasdfa
-
-
-
-
+//        asdfasdf
 
         AVCaptureDevice *device  = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
         AVCaptureInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
