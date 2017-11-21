@@ -21,5 +21,7 @@ typedef  NS_ENUM(NSInteger, ScanType){
 @property (nonatomic, assign)ScanType scantype;
 @property (nonatomic, copy)void (^disMissBlock)(BOOL isDissMiss);
 @property (nonatomic, copy)void (^notUsePhotoBlock)(BOOL ifUse);
+@property (nonatomic, assign)CGRect boderFrame;
+- (instancetype)initWithFrame:(CGRect)frame withBorderFrame:(CGRect)borderFrame;
 
 @end

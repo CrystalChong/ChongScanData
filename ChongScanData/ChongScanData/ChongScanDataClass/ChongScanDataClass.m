@@ -8,6 +8,9 @@
 
 #import "ChongScanDataClass.h"
 #import "ScanViewChong.h"
+
+#define KScreenWidthZC  [UIScreen mainScreen].bounds.size.width
+#define KscreenHeightZC [UIScreen mainScreen].bounds.size.height
 @interface ChongScanDataClass ()<ScanViewDelegate>
 
 @end
@@ -16,11 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.navigationController.title = @"扫码界面";
     //asdfasdfasdfasdf
     self.view.backgroundColor = [UIColor redColor];
-    
-
 
     [self _creatSbView];
     // Do any additional setup after loading the view.
@@ -39,7 +40,7 @@
     return YES;
 }
 - (void)_creatSbView{
-    ScanViewChong *chong = [[ScanViewChong alloc]initWithFrame:self.view.bounds];
+    ScanViewChong *chong = [[ScanViewChong alloc]initWithFrame:self.view.bounds withBorderFrame:CGRectMake(10,KscreenHeightZC*.3,KScreenWidthZC-20, KScreenWidthZC*.7)];
     chong.disMissBlock = ^(BOOL isDissMiss) {
         if (isDissMiss) {
             if ([self.navigationController respondsToSelector:@selector(popViewControllerAnimated:)]) {

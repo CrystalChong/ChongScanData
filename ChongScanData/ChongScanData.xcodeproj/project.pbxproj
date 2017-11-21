@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B00BF791FC3ADEE007C455E /* MaskViewALpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B00BF781FC3ADEE007C455E /* MaskViewALpha.m */; };
+		1B00BF7B1FC3B5D0007C455E /* scanUI@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B00BF7A1FC3B5D0007C455E /* scanUI@2x.png */; };
 		1B3289521FBE6BC70097CEFC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3289511FBE6BC70097CEFC /* AppDelegate.m */; };
 		1B3289551FBE6BC70097CEFC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3289541FBE6BC70097CEFC /* ViewController.m */; };
 		1B3289581FBE6BC70097CEFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3289561FBE6BC70097CEFC /* Main.storyboard */; };
@@ -39,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B00BF771FC3ADEE007C455E /* MaskViewALpha.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaskViewALpha.h; sourceTree = "<group>"; };
+		1B00BF781FC3ADEE007C455E /* MaskViewALpha.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaskViewALpha.m; sourceTree = "<group>"; };
+		1B00BF7A1FC3B5D0007C455E /* scanUI@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanUI@2x.png"; sourceTree = "<group>"; };
 		1B32894D1FBE6BC70097CEFC /* ChongScanData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChongScanData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B3289501FBE6BC70097CEFC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1B3289511FBE6BC70097CEFC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -150,6 +155,9 @@
 				1B3289841FBE70EE0097CEFC /* ChongScanDataClass.m */,
 				1B3289861FBE71BE0097CEFC /* ScanViewChong.h */,
 				1B3289871FBE71BE0097CEFC /* ScanViewChong.m */,
+				1B00BF771FC3ADEE007C455E /* MaskViewALpha.h */,
+				1B00BF781FC3ADEE007C455E /* MaskViewALpha.m */,
+				1B00BF7A1FC3B5D0007C455E /* scanUI@2x.png */,
 				1B32898A1FBE72590097CEFC /* QR@2x.png */,
 				1B3289891FBE72590097CEFC /* scanline.png */,
 			);
@@ -266,6 +274,7 @@
 				1B32895D1FBE6BC70097CEFC /* LaunchScreen.storyboard in Resources */,
 				1B32895A1FBE6BC70097CEFC /* Assets.xcassets in Resources */,
 				1B32898C1FBE725A0097CEFC /* QR@2x.png in Resources */,
+				1B00BF7B1FC3B5D0007C455E /* scanUI@2x.png in Resources */,
 				1B3289581FBE6BC70097CEFC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +303,7 @@
 				1B3289881FBE71BE0097CEFC /* ScanViewChong.m in Sources */,
 				1B3289551FBE6BC70097CEFC /* ViewController.m in Sources */,
 				1B3289601FBE6BC70097CEFC /* main.m in Sources */,
+				1B00BF791FC3ADEE007C455E /* MaskViewALpha.m in Sources */,
 				1B3289521FBE6BC70097CEFC /* AppDelegate.m in Sources */,
 				1B3289851FBE70EE0097CEFC /* ChongScanDataClass.m in Sources */,
 			);

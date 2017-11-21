@@ -8,25 +8,42 @@
 
 #import "ScanViewChong.h"
 #import <AVFoundation/AVFoundation.h>
+#import "MaskViewALpha.h"
+
+#define KScreenWidthZC  [UIScreen mainScreen].bounds.size.width
+#define KscreenHeightZC [UIScreen mainScreen].bounds.size.height
+
 @interface ScanViewChong()<AVCaptureMetadataOutputObjectsDelegate>
 @property (nonatomic, strong)AVCaptureSession *seesion;
 @property (nonatomic, strong)UIImage *imageBorder;
+@property (nonatomic, strong)UIImage *bgViewScan;
+@property (nonatomic, strong)UIImageView *line;
 @end
 @implementation ScanViewChong
 
-- (instancetype)initWithFrame:(CGRect)frame
+/*!
+ *  @abstract 自定义(可设置为任意形状);
+ */
+- (instancetype)initWithFrame:(CGRect)frame withBorderFrame:(CGRect)borderFrame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self _creatSublaery];
-        [self instanceInputAndOutPut];
+        [self _creatSublaery:borderFrame];
+        [self instanceInputAndOutPut:borderFrame];
     }
     return self;
+}
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
 }
 /*!
  *  @abstract 创建外框
  */
-- (void)_creatSublaery{
+- (void)_creatSublaery:(CGRect)borderFrame{
+    if (CGRectIsEmpty(borderFrame)||CGRectIsNull(borderFrame)) {
+        borderFrame = CGRectMake(10,KscreenHeightZC*.3,KScreenWidthZC-20, KScreenWidthZC*.7);
+    }
     UIImage *scanImage = [UIImage imageNamed:@"QR"];
     CGFloat top = 34*0.5-1; // 顶端盖高度
     CGFloat bottom = top ; // 底端盖高度
@@ -34,12 +51,36 @@
     CGFloat right = left; // 右端盖宽度
     UIEdgeInsets insets = UIEdgeInsetsMake(top, left, bottom, right);
     self.imageBorder = [scanImage resizableImageWithCapInsets:insets resizingMode:UIImageResizingModeStretch];
+    //横线做运动;
+    UIImageView *line = [[UIImageView alloc]init];
+    line.frame = CGRectMake(borderFrame.origin.x, borderFrame.origin.y, borderFrame.size.width, 5);
+    line.image = [UIImage imageNamed:@"scanUI"];
+    line.contentMode = UIViewContentModeScaleAspectFill;
+    line.backgroundColor = [UIColor clearColor];
+    line.clipsToBounds = YES;
+    self.line = line;
+    [self addSubview:line];
+    /*
+    // shang500 xia 650 336   336
+    UIImage *scanImage = [UIImage imageNamed:@"scanChong"];
+    CGFloat top = 250; // 顶端盖高度
+    CGFloat bottom = 375 ; // 底端盖高度
+    CGFloat left = 168; // 左端盖宽度
+    CGFloat right =168; // 右端盖宽度
+    UIEdgeInsets insets = UIEdgeInsetsMake(top, left, bottom, right);
+    //边框的位置大小;
+//    self.imageBorder = [scanImage resizableImageWithCapInsets:insets resizingMode:UIImageResizingModeStretch];
+    self.imageBorder = [scanImage stretchableImageWithLeftCapWidth:375/2 topCapHeight:667/2];
+     */
 
 }
 /*!
  *  @abstract 创建输入输出流开始扫码;
  */
-- (void)instanceInputAndOutPut{
+- (void)instanceInputAndOutPut:(CGRect)borderFrame{
+    if (CGRectIsEmpty(borderFrame)||CGRectIsNull(borderFrame)) {
+        borderFrame = CGRectMake(10,KscreenHeightZC*.3,KScreenWidthZC-20, KScreenWidthZC*.7);
+    }
     //判断硬件是否可用
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         //判断用户是否允许摄像头使用;
@@ -54,11 +95,13 @@
         AVCaptureDevice *device  = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
         AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
         AVCaptureMetadataOutput *outPut = [[AVCaptureMetadataOutput alloc]init];
+        
         //主线程中处理截取到的数据;
         [outPut setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
         self.seesion = [[AVCaptureSession alloc]init];
         [self.seesion addInput:input];
         [self.seesion addOutput:outPut];
+        [outPut setRectOfInterest:CGRectMake(borderFrame.origin.y/KscreenHeightZC, borderFrame.origin.x/KScreenWidthZC, borderFrame.size.height/KscreenHeightZC, borderFrame.size.width/KScreenWidthZC)];
         NSMutableArray *array = [NSMutableArray array];
         if (self.scantype==typeQR) {
             if ([outPut.availableMetadataObjectTypes containsObject:AVMetadataObjectTypeQRCode]) {
@@ -95,16 +138,53 @@
     layer.frame = self.layer.frame;
     layer.backgroundColor = [UIColor clearColor].CGColor;
 
-    UIImageView * imageBorder = [[UIImageView alloc]initWithFrame:self.bounds];
+    UIImageView * imageBorder = [[UIImageView alloc]initWithFrame:borderFrame];
     imageBorder.image = self.imageBorder;
+
     imageBorder.contentMode = UIViewContentModeScaleToFill;
-    [layer addSublayer:imageBorder.layer];
-//    [self _adGesture:imageBorder];
+    MaskViewALpha *view = [[MaskViewALpha alloc]initWithFrame:self.bounds];
+    view.borderFrame = borderFrame;
+    [self.layer addSublayer:layer];
+    view.backgroundColor = [UIColor clearColor];
+
+    [self addSubview:view];
+    [self addSubview:imageBorder];
+
+    [self _adGesture:imageBorder];
     [self _adGesture:self];
 
-    [self.layer addSublayer:layer];
     [self.seesion startRunning];
     [self.seesion addObserver:self forKeyPath:@"running" options:NSKeyValueObservingOptionNew context:nil];
+
+}
+/*!
+ *  @abstract 开始动画
+ */
+- (void)_creatStarAnimation:(CGRect)borderFrame{
+
+}
++ (CABasicAnimation *)moveYTime:(float)time fromY:(NSNumber *)fromY toY:(NSNumber *)toY{
+    /*
+     duration    动画的时长
+     repeatCount    重复的次数。不停重复设置为 HUGE_VALF
+     repeatDuration    设置动画的时间。在该时间内动画一直执行，不计次数。
+     beginTime    指定动画开始的时间。从开始延迟几秒的话，设置为【CACurrentMediaTime() + 秒数】 的方式
+     timingFunction    设置动画的速度变化
+     autoreverses    动画结束时是否执行逆动画
+     fromValue    所改变属性的起始值
+     toValue    所改变属性的结束时的值
+     byValue    所改变属性相同起始值的改变量
+     */
+    CABasicAnimation *animationMove = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
+    [animationMove setFromValue:fromY];
+    [animationMove setToValue:toY];
+    animationMove.duration = time;
+  //  animationMove.delegate = self;
+    animationMove.repeatCount  = HUGE_VALF;
+    animationMove.fillMode = kCAFillModeForwards;
+    animationMove.removedOnCompletion = NO;
+    animationMove.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    return animationMove;
 }
 - (void)_adGesture:(UIView *)view{
     view.userInteractionEnabled = YES;
@@ -115,7 +195,6 @@
     UISwipeGestureRecognizer *swip = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(_gestureWith)];
     swip.direction = UISwipeGestureRecognizerDirectionRight|UISwipeGestureRecognizerDirectionLeft;
     [view addGestureRecognizer:swip];
-
 }
 - (void)_gestureWith{
     if (self.disMissBlock) {
@@ -132,6 +211,7 @@
     }
 }
 //获取扫码结果;
+
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
     if (metadataObjects.count>0) {
         [self.seesion stopRunning];
