@@ -57,6 +57,7 @@
     return YES;
 }
 - (void)_creatSbView{
+    //创建扫码视图  withBorderFrame:扫码范围
     ScanViewChong *chong = [[ScanViewChong alloc]initWithFrame:self.view.bounds withBorderFrame:CGRectMake(10,KscreenHeightZC*.3,KScreenWidthZC-20, KScreenWidthZC*.7)];
     chong.disMissBlock = ^(BOOL isDissMiss) {
         if (isDissMiss) {

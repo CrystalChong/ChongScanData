@@ -44,7 +44,35 @@ Qr code,Bar code
 
 ```
 
+打开 ChongScanDataClass.m文件;
+  //创建扫码视图  withBorderFrame:扫码范围
+    ScanViewChong *chong = [[ScanViewChong alloc]initWithFrame:self.view.bounds withBorderFrame:CGRectMake(10,KscreenHeightZC*.3,KScreenWidthZC-20, KScreenWidthZC*.7)];
+    chong.disMissBlock = ^(BOOL isDissMiss) {
+        if (isDissMiss) {
+            if ([self.navigationController respondsToSelector:@selector(popViewControllerAnimated:)]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+        }
+    };
+    chong.delegate = self;
+    chong.scantype = typeALL;//二维码和条形码;
+    [self.view addSubview:chong];
 
+
+从注释中可以看到  withBorderFrame 后面的frame就是我们的扫码范围;
+
+```
+
+**如何设置扫码类型**
+
+```
+ScanViewChong 有一个属性,该属性有三个值  分别表示不同的扫码类型(默认为:条形码和二维码  )
+
+chong.scantype = typeALL;//二维码和条形码;
+chong.scantype = typeQR;//只扫二维码;
+chong.scantype = typeRecent;//只扫条形码;
 
 ```
 
