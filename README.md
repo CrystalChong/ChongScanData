@@ -1,6 +1,6 @@
 # ChongScanData
 Qr code,Bar code
-
+____
 **前言**
 
 ```
@@ -29,6 +29,7 @@ Qr code,Bar code
 ```
 
 # 深度解析
+____
 
 **ChongScanDataClass的优点**
 
