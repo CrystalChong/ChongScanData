@@ -19,7 +19,16 @@ Qr code,Bar code
 (3)模态或者Push 进入出ChongScanDataClass类的对象, 
 (4)进行扫码;
 
+-------代码----------
+    ChongScanDataClass *chong = [[ChongScanDataClass alloc]init];
+    chong.getCodingBlock = ^(NSString *code) {
+        label.text = code;//code 即为搜码得到的字符;
+    };
+    [self presentViewController:chong animated:YES completion:nil];
+
 ```
+
+##深度解析
 
 **ChongScanDataClass的有点**
 
