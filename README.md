@@ -28,9 +28,9 @@ Qr code,Bar code
 
 ```
 
-##深度解析
+# 深度解析
 
-**ChongScanDataClass的有点**
+**ChongScanDataClass的优点**
 
 ```
 * 可深度自定义界面  
