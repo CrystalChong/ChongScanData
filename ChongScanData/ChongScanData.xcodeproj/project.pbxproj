@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		1B00BF791FC3ADEE007C455E /* MaskViewALpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B00BF781FC3ADEE007C455E /* MaskViewALpha.m */; };
 		1B00BF7B1FC3B5D0007C455E /* scanUI@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B00BF7A1FC3B5D0007C455E /* scanUI@2x.png */; };
+		1B00BF7F1FC57EB9007C455E /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B00BF7E1FC57EB8007C455E /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1B3289521FBE6BC70097CEFC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3289511FBE6BC70097CEFC /* AppDelegate.m */; };
 		1B3289551FBE6BC70097CEFC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3289541FBE6BC70097CEFC /* ViewController.m */; };
-		1B3289581FBE6BC70097CEFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3289561FBE6BC70097CEFC /* Main.storyboard */; };
 		1B32895A1FBE6BC70097CEFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B3289591FBE6BC70097CEFC /* Assets.xcassets */; };
 		1B32895D1FBE6BC70097CEFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B32895B1FBE6BC70097CEFC /* LaunchScreen.storyboard */; };
 		1B3289601FBE6BC70097CEFC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B32895F1FBE6BC70097CEFC /* main.m */; };
@@ -44,12 +44,13 @@
 		1B00BF771FC3ADEE007C455E /* MaskViewALpha.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaskViewALpha.h; sourceTree = "<group>"; };
 		1B00BF781FC3ADEE007C455E /* MaskViewALpha.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaskViewALpha.m; sourceTree = "<group>"; };
 		1B00BF7A1FC3B5D0007C455E /* scanUI@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanUI@2x.png"; sourceTree = "<group>"; };
+		1B00BF7D1FC57EB8007C455E /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		1B00BF7E1FC57EB8007C455E /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		1B32894D1FBE6BC70097CEFC /* ChongScanData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChongScanData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B3289501FBE6BC70097CEFC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1B3289511FBE6BC70097CEFC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1B3289531FBE6BC70097CEFC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		1B3289541FBE6BC70097CEFC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		1B3289571FBE6BC70097CEFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B3289591FBE6BC70097CEFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B32895C1FBE6BC70097CEFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B32895E1FBE6BC70097CEFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B00BF7C1FC57EB8007C455E /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				1B00BF7D1FC57EB8007C455E /* RegexKitLite.h */,
+				1B00BF7E1FC57EB8007C455E /* RegexKitLite.m */,
+			);
+			path = RegexKitLite;
+			sourceTree = "<group>";
+		};
 		1B3289441FBE6BC70097CEFC = {
 			isa = PBXGroup;
 			children = (
@@ -120,8 +130,8 @@
 				1B3289511FBE6BC70097CEFC /* AppDelegate.m */,
 				1B3289531FBE6BC70097CEFC /* ViewController.h */,
 				1B3289541FBE6BC70097CEFC /* ViewController.m */,
+				1B00BF7C1FC57EB8007C455E /* RegexKitLite */,
 				1B3289821FBE70C90097CEFC /* ChongScanDataClass */,
-				1B3289561FBE6BC70097CEFC /* Main.storyboard */,
 				1B3289591FBE6BC70097CEFC /* Assets.xcassets */,
 				1B32895B1FBE6BC70097CEFC /* LaunchScreen.storyboard */,
 				1B32895E1FBE6BC70097CEFC /* Info.plist */,
@@ -275,7 +285,6 @@
 				1B32895A1FBE6BC70097CEFC /* Assets.xcassets in Resources */,
 				1B32898C1FBE725A0097CEFC /* QR@2x.png in Resources */,
 				1B00BF7B1FC3B5D0007C455E /* scanUI@2x.png in Resources */,
-				1B3289581FBE6BC70097CEFC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B00BF7F1FC57EB9007C455E /* RegexKitLite.m in Sources */,
 				1B3289881FBE71BE0097CEFC /* ScanViewChong.m in Sources */,
 				1B3289551FBE6BC70097CEFC /* ViewController.m in Sources */,
 				1B3289601FBE6BC70097CEFC /* main.m in Sources */,
@@ -341,14 +351,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1B3289561FBE6BC70097CEFC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1B3289571FBE6BC70097CEFC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1B32895B1FBE6BC70097CEFC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -411,6 +413,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-licucore";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -459,6 +462,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-licucore";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

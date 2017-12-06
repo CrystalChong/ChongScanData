@@ -22,10 +22,27 @@
     self.navigationController.title = @"扫码界面";
     //asdfasdfasdfasdf
     self.view.backgroundColor = [UIColor redColor];
-
+    //创建 二维码视图;
     [self _creatSbView];
+    //创建返回按钮;(可以不用,又手势左滑消失)
+    [self _creatReturnBtn];
     // Do any additional setup after loading the view.
 }
+- (void)_creatReturnBtn{
+
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(5,20, 100, 40)];
+    [btn setTitle:@"<返回" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(_dismisAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+}
+- (void)_dismisAction{
+    if ([self.navigationController respondsToSelector:@selector(popViewControllerAnimated:)]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 //在试图将要已将出现的方法中
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -58,6 +75,7 @@
     if ([self.navigationController respondsToSelector:@selector(popViewControllerAnimated:)]) {
         [self.navigationController popViewControllerAnimated:YES];
     }else{
+
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     if (self.getCodingBlock) {

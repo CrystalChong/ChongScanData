@@ -30,6 +30,7 @@
     if (self) {
         [self _creatSublaery:borderFrame];
         [self instanceInputAndOutPut:borderFrame];
+
     }
     return self;
 }
@@ -51,28 +52,20 @@
     CGFloat right = left; // 右端盖宽度
     UIEdgeInsets insets = UIEdgeInsetsMake(top, left, bottom, right);
     self.imageBorder = [scanImage resizableImageWithCapInsets:insets resizingMode:UIImageResizingModeStretch];
+}
+/*
+ * 创建扫描线
+ */
+- (void)_creatLine:(CGRect)borderFrame{
     //横线做运动;
     UIImageView *line = [[UIImageView alloc]init];
-    line.frame = CGRectMake(borderFrame.origin.x, borderFrame.origin.y, borderFrame.size.width, 5);
-    line.image = [UIImage imageNamed:@"scanUI"];
+    line.frame = CGRectMake(borderFrame.origin.x, borderFrame.origin.y, borderFrame.size.width, 3);
+    line.image = [UIImage imageNamed:@"scanline.png"];
     line.contentMode = UIViewContentModeScaleAspectFill;
-    line.backgroundColor = [UIColor clearColor];
-    line.clipsToBounds = YES;
+    //    line.backgroundColor = [UIColor redColor];
+    //    line.clipsToBounds = YES;
     self.line = line;
     [self addSubview:line];
-    /*
-    // shang500 xia 650 336   336
-    UIImage *scanImage = [UIImage imageNamed:@"scanChong"];
-    CGFloat top = 250; // 顶端盖高度
-    CGFloat bottom = 375 ; // 底端盖高度
-    CGFloat left = 168; // 左端盖宽度
-    CGFloat right =168; // 右端盖宽度
-    UIEdgeInsets insets = UIEdgeInsetsMake(top, left, bottom, right);
-    //边框的位置大小;
-//    self.imageBorder = [scanImage resizableImageWithCapInsets:insets resizingMode:UIImageResizingModeStretch];
-    self.imageBorder = [scanImage stretchableImageWithLeftCapWidth:375/2 topCapHeight:667/2];
-     */
-
 }
 /*!
  *  @abstract 创建输入输出流开始扫码;
@@ -155,13 +148,23 @@
 
     [self.seesion startRunning];
     [self.seesion addObserver:self forKeyPath:@"running" options:NSKeyValueObservingOptionNew context:nil];
-
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self _creatLine:borderFrame];
+        [self _creatStarAnimation:borderFrame];
+    });
 }
 /*!
  *  @abstract 开始动画
  */
 - (void)_creatStarAnimation:(CGRect)borderFrame{
 
+    self.line.hidden = NO;
+    float startY  = CGRectGetMinY(borderFrame)-200;
+    NSNumber *startNumber = [[NSNumber alloc]initWithFloat:startY];
+    float endY  = CGRectGetMinY(borderFrame)+CGRectGetHeight(borderFrame)-205;
+    NSNumber *endNumber = [[NSNumber alloc]initWithFloat:endY];
+    CABasicAnimation *animation = [ScanViewChong moveYTime:3 fromY:startNumber toY:endNumber];
+    [self.line.layer addAnimation:animation forKey:@"LineAnimation"];
 }
 + (CABasicAnimation *)moveYTime:(float)time fromY:(NSNumber *)fromY toY:(NSNumber *)toY{
     /*

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "ChongScanDataClass.h"
 
+
 @interface ViewController ()
 
 @end
@@ -16,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"开始界面";
     UIButton *bvtn = [[UIButton alloc]initWithFrame:CGRectMake(100, 200, 100, 40)];
